@@ -1,0 +1,385 @@
+Linux Commands Cheat Sheet
+
+
+---
+
+1. Basic File & Directory Commands
+
+ls → List files and directories
+
+ls → list files
+
+ls -l → detailed list (permissions, size, date)
+
+ls -a → include hidden files
+
+
+cd → Change directory
+
+cd Documents → go into Documents
+
+cd .. → move one folder back
+
+cd ~ → go to home directory
+
+
+pwd → Show current path
+
+pwd → e.g., /home/omkar/Desktop
+
+
+mkdir → Make directory
+
+mkdir myfolder
+
+
+rm / rmdir / rm -rf → Remove files/folders
+
+rm file.txt → delete file
+
+rmdir emptydir → delete empty directory
+
+rm -rf foldername → delete folder + contents (dangerous)
+
+
+cat → Show file content
+
+cat file.txt
+
+
+zcat → Show compressed .gz file without extracting
+
+zcat file.gz
+
+
+touch → Create empty file / update timestamp
+
+touch newfile.txt
+
+
+head / tail → Show first or last lines of a file
+
+head -n 5 file.txt → first 5 lines
+
+tail -n 5 file.txt → last 5 lines
+
+
+less / more → Scroll file content
+
+less file.txt (press q to quit)
+
+more file.txt
+
+
+
+
+---
+
+2. File Operations
+
+cp → Copy file/folder
+
+cp file.txt backup.txt
+
+cp -r dir1 dir2 → copy folder
+
+
+mv → Move or rename
+
+mv old.txt new.txt
+
+mv file.txt /home/omkar/Documents/
+
+
+wc → Count lines, words, characters
+
+wc file.txt → lines, words, characters
+
+wc -l file.txt → only line count
+
+
+vi → Open file in VI editor
+
+vi file.txt
+
+
+ln → Create links
+
+ln file.txt hardlink.txt → hard link
+
+ln -s file.txt softlink.txt → symbolic (soft) link
+
+
+cut → Extract columns/text
+
+cut -d',' -f1 file.csv → first column
+
+
+tree → Show directory structure
+
+tree
+
+
+sort → Sort lines in a file
+
+sort names.txt
+
+
+clear → Clear terminal screen
+
+clear
+
+
+diff → Compare two files line by line
+
+diff file1.txt file2.txt
+
+
+
+
+---
+
+3. Process & System Monitoring
+
+ps → Show running processes
+
+ps aux
+
+
+top → Real-time process monitor
+
+df → Disk usage
+
+df -h → human readable
+
+
+free → Memory usage
+
+free -h → human readable
+
+
+kill → Stop process by PID
+
+ps aux | grep firefox
+
+kill 1234
+
+
+vmstat → System performance
+
+vmstat → basic stats
+
+vmstat -a → includes active/inactive memory
+
+
+
+
+---
+
+4. User & File Management
+
+nohup → Run command immune to logout
+
+nohup python3 script.py &
+
+
+uname → System info
+
+uname -a
+
+
+uptime → System uptime
+
+uptime
+
+
+date → Show/set date
+
+date
+
+
+who / whoami → Logged-in users
+
+who → all users
+
+whoami → current user
+
+
+which → Path of a command
+
+which git
+
+
+id → User identity (UID, GID, groups)
+
+id
+
+
+shutdown / reboot
+
+sudo shutdown now
+
+sudo reboot
+
+
+sudo → Run commands as root
+
+sudo apt update
+
+
+
+
+---
+
+5. Package Management
+
+apt (Ubuntu/Debian) → sudo apt install nginx
+
+apt-get (older Ubuntu) → sudo apt-get install apache2
+
+yum (CentOS/Amazon Linux) → sudo yum install httpd
+
+dnf (Fedora) → sudo dnf install vlc
+
+pacman (Arch) → sudo pacman -S firefox
+
+portage (Gentoo) → sudo emerge nano
+
+rpm (RedHat) → rpm -ivh package.rpm
+
+
+
+---
+
+6. User & Group Commands
+
+useradd → Add user
+
+sudo useradd -m omkar
+
+
+passwd → Set password
+
+sudo passwd omkar
+
+
+su → Switch user
+
+su omkar
+
+
+userdel → Delete user
+
+sudo userdel omkar
+
+
+/etc/passwd → Check users
+
+groupadd / groupdel → Manage groups
+
+sudo groupadd devs
+
+sudo groupdel devs
+
+
+gpasswd → Add user to group
+
+sudo gpasswd -a omkar devs
+
+
+Permissions
+
+chmod 700 file → change permission
+
+umask → default permission mask
+
+chown → change owner (sudo chown user:group file)
+
+chgrp → change group (sudo chgrp devs file)
+
+
+
+
+---
+
+7. Compression
+
+zip / unzip
+
+zip -r archive.zip folder/
+
+unzip archive.zip
+
+
+tar
+
+tar -cvzf archive.tar.gz folder/ → compress
+
+tar -xvzf archive.tar.gz → extract
+
+
+
+
+---
+
+8. Networking Commands
+
+ping → ping youtube.com
+
+netstat → Show network connections
+
+traceroute / tracepath → Trace network route
+
+nslookup → DNS lookup
+
+telnet → Test ports (telnet example.com 80)
+
+hostname → Show hostname
+
+ip / ifconfig → Show interfaces and IPs
+
+ss → Socket statistics
+
+dig → DNS details (dig youtube.com)
+
+whois → Domain info (whois youtube.com)
+
+arp → MAC address resolution
+
+curl → HTTP/API requests (curl -X GET <API URL> -H "Authorization: token")
+
+wget → Download from internet (wget <URL>)
+
+mtr → Continuous traceroute (watch mtr youtube.com)
+
+nmap → Scan open ports
+
+
+
+---
+
+9. Text Processing
+
+awk → Powerful text tool
+
+awk '{print $1}' app.log → first column
+
+awk '{print $1,$2}' app.log → multiple columns
+
+awk '/INFO/ {print $1,$2}' app.log > info.log → filter lines
+
+awk '/INFO/ {count++} END {print count}' app.log → count occurrences
+
+
+sed → Stream editor
+
+sed -n '/INFO/p' app.log → print only INFO lines
+
+sed 's/INFO/omkar/g' app.log → replace INFO with "omkar"
+
+
+grep → Search in files
+
+grep -i "error" logfile.txt
+
+ps aux | grep ubuntu
